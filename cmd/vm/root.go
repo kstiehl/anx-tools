@@ -1,12 +1,16 @@
 package vm
 
-import "github.com/spf13/cobra"
+import (
+	"github.com/go-logr/logr"
+	"github.com/spf13/cobra"
+)
 
-var RootCmd = &cobra.Command{
-	Use:   "machines",
-	Short: "commands to manage a virtual machine",
-}
+func RootCmd(logger logr.Logger) *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "machines",
+		Short: "commands to manage a virtual machine",
+	}
+	cmd.AddCommand(vmDeletionCmd(logger))
 
-func init() {
-	RootCmd.AddCommand(vmDeletionCmd())
+	return cmd
 }

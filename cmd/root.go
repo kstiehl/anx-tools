@@ -17,7 +17,7 @@ var RootCmd = &cobra.Command{
 func init() {
 	setupLogger()
 	RootCmd.AddCommand(replicationCmd())
-	RootCmd.AddCommand(vm.RootCmd)
+	RootCmd.AddCommand(vm.RootCmd(logger))
 }
 
 var logger logr.Logger
